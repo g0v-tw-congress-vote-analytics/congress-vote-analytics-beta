@@ -15,7 +15,7 @@
   <h3>新增議題</h3>
   <form name="form" method="post" action="insert_issue.php?action=insert">
 
-  <input type="TXT"  name="memo" /> <input type="submit" name="button" value="確定" />
+  <input type="text"  name="memo" /> <input type="submit" name="button" value="確定" />
   </form>
   <br/>
   <h3>議題列表</h3>

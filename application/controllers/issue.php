@@ -18,11 +18,39 @@ class Issue extends CI_Controller {
         $this->list_all();
     }
 
+    public function page($id)
+    {
+
+    }
+
+    public function insert_validate($action)
+    {
+        if ( $action == 'insert' ) {
+            $this->issue_model->put($this->input->post('memo')); 
+        }
+        else {
+            $userid = $this->session->userdata('userid');
+            $isid   = $this->input->post('issueid'); 
+            $vote   = $this->input->post('vote');
+            $scale  = $this->input->post('scale');
+
+            if ($action == 'ins_ivsm') {
+                $this->issue_model->put_ivsm($userid , $isid, $vote, $scale);
+            }
+            else if ($action == 'upd_ivsm') {
+                $this->issue_model->set_ivsm($userid , $isid, $vote, $scale);
+            }
+        }
+
+        redirect(base_url('issue'));
+    }
+
     public function list_all()
     {
 
         $ctr = 0;
         $data['tbody'] = '';
+        $data['action'] = base_url('issue/insert_validate/insert');
         $data['username'] = $this->session->userdata('username');
 
         foreach ($this->issue_model->list_all($this->session->userdata('userid')) as $row) {
@@ -50,7 +78,7 @@ _END;
         }
 
 
-        $this->load->view('issue/main', $data);        
+        $this->load->view('issue/list_all', $data);        
                 
     }
 
