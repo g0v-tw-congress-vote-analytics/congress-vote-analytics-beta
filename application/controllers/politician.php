@@ -34,8 +34,9 @@ class Politician extends CI_Controller {
               </tr>
 _END;
         }
-
+        $this->load->view('tmpt_header', $data);
         $this->load->view('politician/list_all', $data);
+        $this->load->view('tmpt_footer');
     }
 
     public function page($pid, $pname='')
@@ -68,8 +69,9 @@ _END;
             
             }
         }
-
+        $this->load->view('tmpt_header', $data);
         $this->load->view('politician/page', $data);
+        $this->load->view('tmpt_footer');
     }
 
 }

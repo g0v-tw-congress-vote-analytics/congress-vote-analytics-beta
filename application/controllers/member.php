@@ -28,14 +28,15 @@ class Member extends CI_Controller {
             if ($this->session->userdata('username') == $row->username) {
                 $data['list'] .= "電話：{$row->telephone}, 地址：{$row->address}, ";
             }
-            $data['list'] .= "備註：{$row->other}, ";
+            $data['list'] .= "備註：{$row->other}";
             $data['list'] .= '<br/>';
 
         }
 
         $data['username'] = $this->session->userdata('username');
-          
+        $this->load->view('tmpt_header', $data);
         $this->load->view('member/main', $data);
+        $this->load->view('tmpt_footer');
     }
 
     public function update()
@@ -48,7 +49,9 @@ class Member extends CI_Controller {
         $data['other']      = $row->other;
         $data['action']     = base_url('member/update_validate');
 
+        $this->load->view('tmpt_header', $data);
         $this->load->view('member/update', $data);
+        $this->load->view('tmpt_footer');
     }
 
     public function update_validate()
@@ -68,7 +71,10 @@ class Member extends CI_Controller {
     public function delete()
     {
         $data['action'] = base_url('member/delete_validate');
+
+        $this->load->view('tmpt_header', $data);        
         $this->load->view('member/delete', $data);
+        $this->load->view('tmpt_footer');
     }
 
     public function delete_validate()

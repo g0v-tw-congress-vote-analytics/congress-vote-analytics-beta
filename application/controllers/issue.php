@@ -31,7 +31,7 @@ class Issue extends CI_Controller {
 
         $data['ivsm']   = $ivsm;
         $data['issue']  = $this->issue_model->get($issue_id);
-        $data['action'] = (isset($data['ivsm']->vote)) ? base_url('insert_validate/ins_ivsm') : base_url('insert_validate/upd_ivsm');
+        $data['action'] = (isset($data['ivsm']->vote)) ? base_url('issue/insert_validate/ins_ivsm') : base_url('insert_validate/upd_ivsm');
 
         $data['is_vote_true']   = ($data['ivsm']->vote == 1) ? 'checked="checked"' : '' ;
         $data['is_vote_false']  = ($data['ivsm']->vote == -1) ? 'checked="checked"' : '' ;
@@ -71,8 +71,9 @@ class Issue extends CI_Controller {
 
             }           
         }
-
+        $this->load->view('tmpt_header', $data);
         $this->load->view('issue/page', $data);
+        $this->load->view('tmpt_footer');
     }
 
     public function insert_validate($action)
@@ -129,9 +130,9 @@ _END;
             }
         }
 
-
+        $this->load->view('tmpt_header', $data);
         $this->load->view('issue/list_all', $data);        
-                
+        $this->load->view('tmpt_footer');
     }
 
 }
