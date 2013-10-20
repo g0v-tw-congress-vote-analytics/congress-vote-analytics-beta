@@ -13,11 +13,11 @@
 
   議題名稱： <?php echo $issue->name;?>
   <form name="form" method="post" action="insert_issue.php?action=ins_ivsm">
-    <input type="hidden" name="issueid" value="$issueid" />
+    <input type="hidden" name="issueid" value="<?php echo $issueid;?>" />
 
     立場：
-    <input type="radio" name="vote" value="1" checked="<?php echo $is_vote_true;?>">同意</input>
-    <input type="radio" name="vote" value="-1" checked="<?php echo $is_vote_false;?>">反對</input>  <br/>
+    <input type="radio" name="vote" value="1" <?php echo $is_vote_true;?>>同意</input>
+    <input type="radio" name="vote" value="-1" <?php echo $is_vote_false;?>>反對</input>  <br/>
 
     重要性：
     <input type="text" name="scale" value="<?php echo $ivsm->scale;?>" />(請輸入1~100的數值) <br/>

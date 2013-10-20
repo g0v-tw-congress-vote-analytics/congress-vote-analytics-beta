@@ -20,15 +20,26 @@ class Issue extends CI_Controller {
 
     public function page($issue_id)
     {
-        $data['ivsm']       = $this->issue_model->get_ivsm($issue_id, $this->session->userdata('userid'));
-        $data['issue']      = $this->issue_model->get($issue_id);
-        $data['action']     = ($data['ivsm']->vote == null) ? base_url('insert_validate/ins_ivsm') : base_url('insert_validate/upd_ivsm');
+        $ivsm = $this->issue_model->get_ivsm($issue_id, $this->session->userdata('userid'));
 
-        $data['is_vote_true']   = ($data['ivsm']->vote == 1) ? 'checked' : '' ;
-        $data['is_vote_false']  = ($data['ivsm']->vote == -1) ? 'checked' : '' ;
+        if ( empty($ivsm) ) {
+            $ivsm = (object) $ivsm;
+            $ivsm->vote = 0;
+            $ivsm->scale = null;
+        }
+
+
+        $data['ivsm']   = $ivsm;
+        $data['issue']  = $this->issue_model->get($issue_id);
+        $data['action'] = (isset($data['ivsm']->vote)) ? base_url('insert_validate/ins_ivsm') : base_url('insert_validate/upd_ivsm');
+
+        $data['is_vote_true']   = ($data['ivsm']->vote == 1) ? 'checked="checked"' : '' ;
+        $data['is_vote_false']  = ($data['ivsm']->vote == -1) ? 'checked="checked"' : '' ;
 
         $data['tbody'] = '';
         $data['username'] = $this->session->userdata('username');
+        $data['issueid']  = $issue_id;
+
 
         $ctr = 0;
 
