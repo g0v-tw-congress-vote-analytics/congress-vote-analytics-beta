@@ -7,8 +7,7 @@ class Member extends CI_Controller {
         parent::__construct();
 
         if ($this->session->userdata('username') == null) {
-            $this->load->view('mp_permisssion');
-            return 0;
+            exit( $this->load->view('no_permission' ,'' ,true));
         }
 
         $this->load->model('member_model');
