@@ -16,6 +16,10 @@ class Portal_model extends CI_Model {
         return $this->db->get('member_table')->row();
     }
 
+    public function put_user_data($array)
+    {
+        $this->db->insert('member_table', $array);
+    }
 }
 
 /* End of file portal_model.php */

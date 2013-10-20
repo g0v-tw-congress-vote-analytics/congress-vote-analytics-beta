@@ -46,6 +46,31 @@ class Portal extends CI_Controller {
         $this->session->sess_destroy();
         redirect('portal');
     }
+
+    public function register() 
+    {
+        $data['action'] = base_url('portal/register_validate');
+        $this->load->view('portal/register', $data);
+    }
+
+    public function register_validate()
+    {
+        if( $this->input->post('pw') != $this->input->post('pw2')) {
+            exit('password and password checking is diiferent!');
+        }
+
+        #TODO: Form validate
+
+        $input_data = array(    'username'  => $this->input->post('id'),
+                                'password'  => $this->input->post('pw'),
+                                'telephone' => $this->input->post('telephone'),
+                                'address'   => $this->input->post('address'),
+                                'other'     => $this->input->post('other'),    );
+
+        $this->portal_model->put_user_data($input_data);
+        redirect('portal');
+
+    }
 }
 
 /* End of file portal.php */
