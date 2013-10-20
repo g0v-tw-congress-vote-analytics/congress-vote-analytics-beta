@@ -65,6 +65,18 @@ class Member extends CI_Controller {
         redirect(base_url('member'));
     }
 
+    public function delete()
+    {
+        $data['action'] = base_url('member/delete_validate');
+        $this->load->view('member/delete', $data);
+    }
+
+    public function delete_validate()
+    {
+        $this->member_model->del_user($this->input->post('id'));
+        redirect(base_url('member'));   
+    }
+
 }
 
 /* End of file member.php */

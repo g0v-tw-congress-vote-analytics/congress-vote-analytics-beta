@@ -18,6 +18,12 @@ class Member_model extends CI_Model {
         $this->db->where('username = ', $username);
         $this->db->update('member_table', $array);
     }
+
+    public function del_user($username)
+    {
+        $this->db->where('username = ', $username);
+        $this->db->delete('member_table');
+    }
 }
 
 /* End of file member_table_model.php */
