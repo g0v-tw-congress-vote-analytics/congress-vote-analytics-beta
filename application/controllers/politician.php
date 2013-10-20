@@ -15,10 +15,15 @@ class Politician extends CI_Controller {
 
     public function index()
     {
-        $this->main();
+        $this->list_all();
     }
 
-    public function main($pid, $pname='')
+    public function list_all()
+    {
+
+    }
+
+    public function page($pid, $pname='')
     {
         $data['tbody']  = '';
         $data['pid']    = $pid;
@@ -49,7 +54,7 @@ _END;
             }
         }
 
-        $this->load->view('politician/main', $data);
+        $this->load->view('politician/page', $data);
     }
 
 }
