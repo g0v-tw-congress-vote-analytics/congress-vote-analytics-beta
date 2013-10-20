@@ -18,9 +18,50 @@ class Issue extends CI_Controller {
         $this->list_all();
     }
 
-    public function page($id)
+    public function page($issue_id)
     {
+        $data['ivsm']       = $this->issue_model->get_ivsm($issue_id, $this->session->userdata('userid'));
+        $data['issue']      = $this->issue_model->get($issue_id);
+        $data['action']     = ($data['ivsm']->vote == null) ? base_url('insert_validate/ins_ivsm') : base_url('insert_validate/upd_ivsm');
 
+        $data['is_vote_true']   = ($data['ivsm']->vote == 1) ? 'checked' : '' ;
+        $data['is_vote_false']  = ($data['ivsm']->vote == -1) ? 'checked' : '' ;
+
+        $data['tbody'] = '';
+        $data['username'] = $this->session->userdata('username');
+
+        $ctr = 0;
+
+        foreach ($this->issue_model->get_position($issue_id) as $row) {
+
+            $ctr++;
+            if ($row == null) {
+               $data['tbody'] .= "<tr><td>$ctr</td><td>本議題尚未有立場資料</td><td></td><td></td></tr>";
+            }
+
+            else{
+                $url = base_url("politician/page/{$row->id}");
+                $data['tbody'] .= "<tr><td>$ctr</td><td><a href='$url'>{$row->name}</a></td>";
+                $ctr++;
+
+                switch ($row->vote) {
+                    case '1':
+                        $data['tbody'] .= "<td>支持</td><td>{$row->cont}</td></tr>";
+                        break;
+                    
+                    case '-1':
+                        $data['tbody'] .= "<td>反對</td><td>{$row->cont}</td></tr>";
+                        break;
+
+                    default:
+                        $data['tbody'] .= "<td>尚未表態</td><td>0</td></tr>";
+                        break;
+                }
+
+            }           
+        }
+
+        $this->load->view('issue/page', $data);
     }
 
     public function insert_validate($action)
