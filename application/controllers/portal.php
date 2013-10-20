@@ -6,9 +6,7 @@ class Portal extends CI_Controller {
     {
         parent::__construct();  
 
-        $this->load->helper('url_helper');
         $this->load->model('portal_model');
-        $this->load->library('session');
     }
 
     public function index()
