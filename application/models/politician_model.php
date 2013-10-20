@@ -14,6 +14,12 @@ class Politician_model extends CI_Model {
         return $this->db->get('politician')->row()->name;
     }
 
+    public function list_all($userid)
+    {
+        $query = $this->db->query("SELECT `ip`.`pid`, `po`.`name`, SUM( `ip`.`vote` * `im`.`vote` * `im`.`scale` ) AS `cont` FROM  `ivsp` AS `ip`,  `ivsm` AS `im`,  `politician` AS `po` WHERE `ip`.`pid` = `po`.`id` AND `ip`.`isid` = `im`.`isid` AND `im`.`mid` = '$userid' GROUP BY `ip`.`pid` ORDER BY `cont` DESC");
+        return $query->result();
+    }
+
 }
 
 /* End of file politician_model.php */
