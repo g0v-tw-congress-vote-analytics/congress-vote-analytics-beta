@@ -22,12 +22,14 @@ class Politician extends CI_Controller {
     {
         $data['username']   = $this->session->userdata('username');
         $data['tbody']      = '';
+        
 
         foreach ($this->politician_model->list_all($this->session->userdata('userid')) as $row) {
+            $a_ref = base_url("politician/page/{$row->pid}");
             $data['tbody'] .= <<<_END
                 <tr>
                   <td>{$row->pid}</td>
-                  <td><a href="{base_url('politician/page/{$row->pid}')}">{$row->name}</a></td>
+                  <td><a href="{$a_ref}">{$row->name}</a></td>
                   <td>{$row->cont}</td>
               </tr>
 _END;
