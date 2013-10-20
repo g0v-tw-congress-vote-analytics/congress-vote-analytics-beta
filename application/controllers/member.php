@@ -38,6 +38,13 @@ class Member extends CI_Controller {
         $this->load->view('member/main', $data);
     }
 
+    public function update()
+    {
+
+    }
+
+    
+
 }
 
 /* End of file member.php */

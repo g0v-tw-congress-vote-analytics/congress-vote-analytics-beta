@@ -32,15 +32,20 @@ class Portal extends CI_Controller {
             $this->session->set_userdata($session_data);
 
             echo "login sussess!";
-            redirect('portal/member');
+            redirect('member');
         }
         else
         {
             echo "login failed!";
-            redirect('portal/login');
+            redirect('portal');
         }
     }
 
+    public function logout()
+    {
+        $this->session->sess_destroy();
+        redirect('portal');
+    }
 }
 
 /* End of file portal.php */
