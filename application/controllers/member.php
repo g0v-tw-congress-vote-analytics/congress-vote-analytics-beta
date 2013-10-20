@@ -40,10 +40,30 @@ class Member extends CI_Controller {
 
     public function update()
     {
+        $row = $this->member_model->get_user_data($this->session->userdata('username'));
+        $data['username']   = $row->username;
+        $data['password']   = $row->password;
+        $data['telephone']  = $row->telephone;
+        $data['address']    = $row->address;
+        $data['other']      = $row->other;
+        $data['action']     = base_url('member/update_validate');
 
+        $this->load->view('member/update', $data);
     }
 
-    
+    public function update_validate()
+    {
+        $input_data = array(    'username'  => $this->input->post('id'),
+                                'password'  => $this->input->post('pw'),
+                                'telephone' => $this->input->post('telephone'),
+                                'address'   => $this->input->post('address'),
+                                'other'     => $this->input->post('other'),    );
+        $username = $this->input->post('id');
+
+        $this->member_model->set_user_data($username, $input_data);
+
+        redirect(base_url('member'));
+    }
 
 }
 
