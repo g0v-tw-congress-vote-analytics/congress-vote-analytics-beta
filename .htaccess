@@ -1,0 +1,3 @@
+RewriteEngine on
+RewriteCond $1 !^(index\.php|data|robots\.txt)
+RewriteRule ^(.*)$ /g0v_tw/va_ci/index.php/$1 [L]
