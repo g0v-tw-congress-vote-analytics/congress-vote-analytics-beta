@@ -14,7 +14,7 @@
 | path to your installation.
 |
 */
-$config['base_url']	= 'http://fntsr/g0v_tw/va_ci/';
+$config['base_url']	= 'http://fntsr/g0v_tw/beta/';
 
 /*
 |--------------------------------------------------------------------------
