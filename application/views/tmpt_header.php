@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>首頁</title>
+  <title><?php echo (isset($title)) ? "選票成份分析 - $title":'選票成份分析';?></title>
 </head>
 
 <body>
