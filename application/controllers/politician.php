@@ -49,10 +49,11 @@ _END;
         $ctr = 0;
         foreach ($this->politician_model->get_info($data['pid']) as $row) {
             $ctr++;
+            $issue_url = base_url("/issue/page/{$row->id}");
             $data['tbody'] .= <<<_END
                 <tr>
                   <td>{$ctr}</td>
-                  <td><a href='issue_content.php?id={$row->id}'>{$row->name}</a></td>
+                  <td><a href="$issue_url">{$row->name}</a></td>
 _END;
             switch ($row->vote) {
                 case '1':
