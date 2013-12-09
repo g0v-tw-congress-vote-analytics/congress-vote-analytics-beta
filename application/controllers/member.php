@@ -20,19 +20,22 @@ class Member extends CI_Controller {
 
     public function main()
     {
-        $data['list'] = '';
+        $this->load->library('table');
+
+        $tmpl = array('table_open' => '<table class="table">');
+        $this->table->set_template($tmpl);
+
+        $this->table->set_heading('NO', '使用者名稱', '電話', '地址', '備註');
 
         foreach ($this->member_model->list_all() as $row) {
-            $data['list'] .= "{$row->NO} - 名字(帳號)：{$row->username}, ";
-
-            if ($this->session->userdata('username') == $row->username) {
-                $data['list'] .= "電話：{$row->telephone}, 地址：{$row->address}, ";
-            }
-            $data['list'] .= "備註：{$row->other}";
-            $data['list'] .= '<br/>';
-
+            $array = array($row->NO, $row->username);
+            $is_self = $this->session->userdata('username') == $row->username;
+            $array[] = $is_self ? $row->telephone   : '-';
+            $array[] = $is_self ? $row->address     : '-';
+            $array[] = $row->other;
+            $this->table->add_row($array);
         }
-
+        $data['list'] = $this->table->generate();
         $data['username'] = $this->session->userdata('username');
         $this->load->view('tmpt_header', $data);
         $this->load->view('member/main', $data);
