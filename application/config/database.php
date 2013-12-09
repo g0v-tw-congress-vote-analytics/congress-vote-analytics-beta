@@ -46,7 +46,8 @@
 */
 
 //$active_group = 'byehost';
-$active_group = 'default';
+//$active_group = 'default';
+$active_group = 'bater';
 $active_record = TRUE;
 
 $db['default']['hostname'] = 'localhost';
@@ -80,6 +81,22 @@ $db['byehost']['dbcollat'] = 'utf8_general_ci';
 $db['byehost']['swap_pre'] = '';
 $db['byehost']['autoinit'] = TRUE;
 $db['byehost']['stricton'] = FALSE;
+
+$db['bater']['hostname'] = 'localhost';
+$db['bater']['username'] = 'phpMyAdmin';
+$db['bater']['password'] = '';
+$db['bater']['database'] = 'test';
+$db['bater']['dbdriver'] = 'mysql';
+$db['bater']['dbprefix'] = '';
+$db['bater']['pconnect'] = TRUE;
+$db['bater']['db_debug'] = TRUE;
+$db['bater']['cache_on'] = FALSE;
+$db['bater']['cachedir'] = '';
+$db['bater']['char_set'] = 'utf8';
+$db['bater']['dbcollat'] = 'utf8_general_ci';
+$db['bater']['swap_pre'] = '';
+$db['bater']['autoinit'] = TRUE;
+$db['bater']['stricton'] = FALSE;
 
 /* End of file database.php */
 /* Location: ./application/config/database.php */
