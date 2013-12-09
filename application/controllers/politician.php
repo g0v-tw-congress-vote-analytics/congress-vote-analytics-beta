@@ -24,16 +24,24 @@ class Politician extends CI_Controller {
         $data['tbody']      = '';
         
 
+        $this->load->library('table');
+
+        $tmpl = array('table_open' => '<table class="table">');
+        $this->table->set_template($tmpl);
+
+        $this->table->set_heading('序號', '立委名稱', '加權排序');
+
         foreach ($this->politician_model->list_all($this->session->userdata('userid')) as $row) {
             $a_ref = base_url("politician/page/{$row->pid}");
-            $data['tbody'] .= <<<_END
-                <tr>
-                  <td>{$row->pid}</td>
-                  <td><a href="{$a_ref}">{$row->name}</a></td>
-                  <td>{$row->cont}</td>
-              </tr>
-_END;
+
+            $array = array();
+            $array[] = $row->pid;
+            $array[] = "<a href=\"{$a_ref}\">{$row->name}</a>";
+            $array[] = $row->cont;
+            $this->table->add_row($array);
         }
+        $data['tbody'] = $this->table->generate();
+
         $this->load->view('tmpt_header', $data);
         $this->load->view('politician/list_all', $data);
         $this->load->view('tmpt_footer');
