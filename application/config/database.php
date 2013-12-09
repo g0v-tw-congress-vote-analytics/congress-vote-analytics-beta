@@ -45,15 +45,13 @@
 | the active record class
 */
 
-//$active_group = 'byehost';
-//$active_group = 'default';
-$active_group = 'bater';
+$active_group = 'default';
 $active_record = TRUE;
 
 $db['default']['hostname'] = 'localhost';
-$db['default']['username'] = 'g0v_va';
-$db['default']['password'] = 'XjwE3KFSQRCh7hss';
-$db['default']['database'] = 'g0v_va';
+$db['default']['username'] = '';
+$db['default']['password'] = '';
+$db['default']['database'] = '';
 $db['default']['dbdriver'] = 'mysql';
 $db['default']['dbprefix'] = '';
 $db['default']['pconnect'] = TRUE;
@@ -65,38 +63,5 @@ $db['default']['dbcollat'] = 'utf8_general_ci';
 $db['default']['swap_pre'] = '';
 $db['default']['autoinit'] = TRUE;
 $db['default']['stricton'] = FALSE;
-
-$db['byehost']['hostname'] = 'sql101.byethost7.com';
-$db['byehost']['username'] = 'b7_13475641';
-$db['byehost']['password'] = '1qaz2wsx';
-$db['byehost']['database'] = 'b7_13475641_test1';
-$db['byehost']['dbdriver'] = 'mysql';
-$db['byehost']['dbprefix'] = '';
-$db['byehost']['pconnect'] = TRUE;
-$db['byehost']['db_debug'] = TRUE;
-$db['byehost']['cache_on'] = FALSE;
-$db['byehost']['cachedir'] = '';
-$db['byehost']['char_set'] = 'utf8';
-$db['byehost']['dbcollat'] = 'utf8_general_ci';
-$db['byehost']['swap_pre'] = '';
-$db['byehost']['autoinit'] = TRUE;
-$db['byehost']['stricton'] = FALSE;
-
-$db['bater']['hostname'] = 'localhost';
-$db['bater']['username'] = 'phpMyAdmin';
-$db['bater']['password'] = '';
-$db['bater']['database'] = 'test';
-$db['bater']['dbdriver'] = 'mysql';
-$db['bater']['dbprefix'] = '';
-$db['bater']['pconnect'] = TRUE;
-$db['bater']['db_debug'] = TRUE;
-$db['bater']['cache_on'] = FALSE;
-$db['bater']['cachedir'] = '';
-$db['bater']['char_set'] = 'utf8';
-$db['bater']['dbcollat'] = 'utf8_general_ci';
-$db['bater']['swap_pre'] = '';
-$db['bater']['autoinit'] = TRUE;
-$db['bater']['stricton'] = FALSE;
-
 /* End of file database.php */
 /* Location: ./application/config/database.php */
