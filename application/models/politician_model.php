@@ -20,6 +20,11 @@ class Politician_model extends CI_Model {
         return $query->result();
     }
 
+    public function search($keyWord) {
+        $query = $this->db->query("SELECT `id`, `name` FROM `politician` WHERE `name` LIKE '%$keyWord%' ORDER BY `id` ASC");
+        return $query->result();        
+    }
+
 }
 
 /* End of file politician_model.php */

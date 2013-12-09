@@ -43,6 +43,11 @@ class Issue_model extends CI_Model {
         return $query->result();
     }
 
+    public function search($keyWord) {
+        $query = $this->db->query("SELECT `id`, `name` FROM `issue` WHERE `name` LIKE '%$keyWord%' ORDER BY `id` ASC");
+        return $query->result();        
+    }    
+
 }
 
 /* End of file issue_model.php */

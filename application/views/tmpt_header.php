@@ -30,9 +30,9 @@
       <li><a href="<?php echo base_url('issue');?>">議題表態</a></li>
       <li><a href="<?php echo base_url('politician');?>">立委列表</a></li>
     </ul>
-    <form class="navbar-form navbar-left" role="search">
+    <form class="navbar-form navbar-left" role="search" method="post" action="<?php echo base_url('search/result/');?>">
       <div class="form-group">
-        <input type="text" class="form-control" placeholder="輸入議題或立偉關鍵字">
+        <input type="text" name="keyword" class="form-control" placeholder="輸入議題或立委關鍵字">
       </div>
       <button type="submit" class="btn btn-default">搜尋</button>
     </form>
