@@ -106,29 +106,38 @@ class Issue extends CI_Controller {
         $data['action'] = base_url('issue/insert_validate/insert');
         $data['username'] = $this->session->userdata('username');
 
+        $this->load->library('table');
+
+        $tmpl = array('table_open' => '<table class="table">');
+        $this->table->set_template($tmpl);
+
+        $this->table->set_heading('序號', '議題名稱(點選連結進入議題內頁)', '你的立場', '重要性');
+
         foreach ($this->issue_model->list_all($this->session->userdata('userid')) as $row) {
             $ctr++;
             $a_ref = base_url("issue/page/{$row->id}");
-            $data['tbody'] .= <<<_END
-                <tr>
-                  <td>{$ctr}</td>
-                  <td><a href="{$a_ref}">{$row->name}</a></td>
-_END;
+
+            $array = array();
+            $array[] = $ctr;
+            $array[] = "<a href=\"{$a_ref}\">{$row->name}</a>";
+
             switch ($row->vote) {
                 case '1':
-                    $data['tbody'] .= "<td>支持</td><td>{$row->scale}</td></tr>";
+                    $array[] = '支持';
                     break;
 
                 case '-1':
-                    $data['tbody'] .= "<td>反對</td><td>{$row->scale}</td></tr>";
+                    $array[] = '反對';
                     break;
 
                 default:
-                    $data['tbody'] .= "<td>尚未表態</td><td></td></tr>";
+                    $array[] = '尚未表態';
                     break;
-            
             }
+            $array[] =isset($row->scale) ? $row->scale : '-';
+            $this->table->add_row($array);
         }
+        $data['tbody'] = $this->table->generate();
 
         $this->load->view('tmpt_header', $data);
         $this->load->view('issue/list_all', $data);        

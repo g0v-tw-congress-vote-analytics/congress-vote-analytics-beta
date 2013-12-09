@@ -10,17 +10,4 @@
 
 <h3>議題列表</h3>
 <p>針對此議題你的立場排序。</p>
-<table>
-  <thead>
-    <tr>
-      <td>序號</td>
-      <td>議題名稱(點選連結進入議題內頁)</td>
-      <td>你的立場</td>
-      <td>重要性</td>
-    </tr>
-  </thead>
-  <tbody>
-    <?php echo $tbody; ?>  
-  </tbody>
-</table>    
-
+<?php echo $tbody; ?>  
