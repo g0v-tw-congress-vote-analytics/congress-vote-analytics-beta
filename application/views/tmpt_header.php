@@ -27,8 +27,9 @@
   <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
     <ul class="nav navbar-nav">
       <li><a href="<?php echo base_url('member');?>">會員列表</a></li>
-      <li><a href="<?php echo base_url('issue');?>">議題表態</a></li>
+      <li><a href="<?php echo base_url('issue');?>">議題列表</a></li>
       <li><a href="<?php echo base_url('politician');?>">立委列表</a></li>
+	  <li><a href="<?php echo base_url('manage');?>">管理頁面</a></li>
     </ul>
     <form class="navbar-form navbar-left" role="search" method="post" action="<?php echo base_url('search/result/');?>">
       <div class="form-group">
@@ -37,7 +38,7 @@
       <button type="submit" class="btn btn-default">搜尋</button>
     </form>
     <ul class="nav navbar-nav navbar-right">
-      <li><a href="<?php echo base_url('member/update');?>">修改 <?php echo $this->session->userdata('username'); ?> 個資</a></li>
+      <li><a href="<?php echo base_url('member/update');?>">哈囉 <?php echo $this->session->userdata('username'); ?> ! 編輯資料</a></li>
       <li><a href="<?php echo base_url('portal/logout');?>">登出</a></li>
     </ul>
   </div><!-- /.navbar-collapse -->
