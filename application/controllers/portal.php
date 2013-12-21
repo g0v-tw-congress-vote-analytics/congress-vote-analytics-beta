@@ -32,7 +32,7 @@ class Portal extends CI_Controller {
             $this->session->set_userdata($session_data);
 
             echo "login sussess!";
-            redirect('member');
+            redirect('issue');
         }
         else
         {

@@ -111,7 +111,7 @@ class Issue extends CI_Controller {
         $tmpl = array('table_open' => '<table class="table">');
         $this->table->set_template($tmpl);
 
-        $this->table->set_heading('序號', '議題名稱(點選連結進入議題內頁)', '你的立場', '重要性');
+        $this->table->set_heading('序號', '議題名稱(點選連結進入議題內頁)', '你的立場', '重要性' ,'重要性2');
 
         foreach ($this->issue_model->list_all($this->session->userdata('userid')) as $row) {
             $ctr++;
@@ -123,18 +123,19 @@ class Issue extends CI_Controller {
 
             switch ($row->vote) {
                 case '1':
-                    $array[] = '支持';
+					$array[] = "<input id=botton_\"{$row->id}\" type='button' value='支持' />";
                     break;
 
                 case '-1':
-                    $array[] = '反對';
+					$array[] = "<input id=botton_\"{$row->id}\" type='button' value='反對' />";
                     break;
 
                 default:
-                    $array[] = '尚未表態';
+					$array[] = "<input id=botton_\"{$row->id}\" type='button' value='尚未表態' />";
                     break;
             }
             $array[] =isset($row->scale) ? $row->scale : '-';
+			$array[] = "<input id=range_\"{$row->id}\" type='range'  />";
             $this->table->add_row($array);
         }
         $data['tbody'] = $this->table->generate();

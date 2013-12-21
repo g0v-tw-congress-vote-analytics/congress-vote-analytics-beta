@@ -53,31 +53,39 @@ class Politician extends CI_Controller {
         $data['pid']    = $pid;
         $data['pname']  = $this->politician_model->get_name($data['pid']);
         $data['username']  = $this->session->userdata('username');
+		/* new */
+		$ctr = 0;
+		$this->load->library('table');
 
-        $ctr = 0;
+        $tmpl = array('table_open' => '<table class="table">');
+        $this->table->set_template($tmpl);
+
+        $this->table->set_heading('序號', '議題名稱(點選連結進入議題內頁)', '立委立場','重視程度');
+
         foreach ($this->politician_model->get_info($data['pid']) as $row) {
             $ctr++;
-            $issue_url = base_url("/issue/page/{$row->id}");
-            $data['tbody'] .= <<<_END
-                <tr>
-                  <td>{$ctr}</td>
-                  <td><a href="$issue_url">{$row->name}</a></td>
-_END;
-            switch ($row->vote) {
-                case '1':
-                    $data['tbody'] .= "<td>支持</td><td>{$row->scale}</td></tr>";
-                    break;
+			$a_ref = base_url("/issue/page/{$row->id}");
 
-                case '-1':
-                    $data['tbody'] .= "<td>反對</td><td>{$row->scale}</td></tr>";
+            $array = array();
+            $array[] = $ctr;
+            $array[] = "<a href=\"{$a_ref}\">{$row->name}</a>";            
+			switch ($row->vote) {
+                case '1':     
+					$array[] = '支持';
                     break;
-
-                default:
-                    $data['tbody'] .= "<td>尚未表態</td><td></td></tr>";
+                case '-1':                    
+					$array[] = '反對';
                     break;
-            
+                default:             
+					$array[] = '尚未表態';
+                    break;           
             }
+			$array[] =isset($row->scale) ? $row->scale : '-';
+            $this->table->add_row($array);
         }
+
+		$data['tbody'] = $this->table->generate();
+		
         $this->load->view('tmpt_header', $data);
         $this->load->view('politician/page', $data);
         $this->load->view('tmpt_footer');
