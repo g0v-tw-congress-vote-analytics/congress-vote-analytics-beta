@@ -50,7 +50,10 @@ class Portal extends CI_Controller {
     public function register() 
     {
         $data['action'] = base_url('portal/register_validate');
-        $this->load->view('portal/register', $data);
+		
+        $this->load->view('tmpt_header', $data);
+		$this->load->view('portal/register', $data);
+		$this->load->view('tmpt_footer');
     }
 
     public function register_validate()

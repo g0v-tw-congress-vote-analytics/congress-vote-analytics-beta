@@ -54,6 +54,8 @@
                 <?php //echo $msg; ?>
             </div>
             <button class="btn btn-large btn-primary btn-block" type="submit">登入</button>
+			<button class="btn btn-large btn-primary btn-block" type="button"
+			onclick="javascript:location.href='portal/register'">註冊</button>
         </form>
 
     </div>     
